@@ -41,7 +41,7 @@ public class OmsCartItemController {
     @ApiOperation("获取某个会员的购物车列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<OmsCartItem>> list() {
+    public CommonResult list() {
         List<OmsCartItem> cartItemList = cartItemService.list(memberService.getCurrentMember().getId());
         return CommonResult.success(cartItemList);
     }
@@ -49,7 +49,7 @@ public class OmsCartItemController {
     @ApiOperation("获取某个会员的购物车列表,包括促销信息")
     @RequestMapping(value = "/list/promotion", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<CartPromotionItem>> listPromotion() {
+    public CommonResult listPromotion() {
         List<CartPromotionItem> cartPromotionItemList = cartItemService.listPromotion(memberService.getCurrentMember().getId());
         return CommonResult.success(cartPromotionItemList);
     }
@@ -69,7 +69,7 @@ public class OmsCartItemController {
     @ApiOperation("获取购物车中某个商品的规格,用于重选规格")
     @RequestMapping(value = "/getProduct/{productId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CartProduct> getCartProduct(@PathVariable Long productId) {
+    public CommonResult getCartProduct(@PathVariable Long productId) {
         CartProduct cartProduct = cartItemService.getCartProduct(productId);
         return CommonResult.success(cartProduct);
     }

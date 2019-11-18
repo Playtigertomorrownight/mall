@@ -59,7 +59,7 @@ public class OmsOrderReturnReasonController {
     @ApiOperation("分页查询全部退货原因")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<OmsOrderReturnReason>> list(@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+    public CommonResult list(@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                                @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         List<OmsOrderReturnReason> reasonList = orderReturnReasonService.list(pageSize, pageNum);
         return CommonResult.success(CommonPage.restPage(reasonList));
@@ -68,7 +68,7 @@ public class OmsOrderReturnReasonController {
     @ApiOperation("获取单个退货原因详情信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<OmsOrderReturnReason> getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable Long id) {
         OmsOrderReturnReason reason = orderReturnReasonService.getItem(id);
         return CommonResult.success(reason);
     }

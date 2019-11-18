@@ -1,18 +1,22 @@
 package com.macro.mall.portal.domain;
 
-import com.macro.mall.model.UmsMember;
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
-import java.util.Collection;
+import com.macro.mall.model.UmsMember;
 
 /**
  * 会员详情封装
  * Created by macro on 2018/8/3.
  */
 public class MemberDetails implements UserDetails {
+  
+  
+  private static final long serialVersionUID = -6149786502373118692L;
     private UmsMember umsMember;
 
     public MemberDetails(UmsMember umsMember) {

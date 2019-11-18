@@ -1,15 +1,21 @@
 package com.macro.mall.portal.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.macro.mall.common.api.CommonResult;
 import com.macro.mall.portal.domain.MemberBrandAttention;
 import com.macro.mall.portal.service.MemberAttentionService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * 会员关注品牌管理Controller
@@ -48,7 +54,7 @@ public class MemberAttentionController {
     @ApiOperation("显示关注列表")
     @RequestMapping(value = "/list/{memberId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<MemberBrandAttention>> list(@PathVariable Long memberId) {
+    public CommonResult list(@PathVariable Long memberId) {
         List<MemberBrandAttention> memberBrandAttentionList = memberAttentionService.list(memberId);
         return CommonResult.success(memberBrandAttentionList);
     }

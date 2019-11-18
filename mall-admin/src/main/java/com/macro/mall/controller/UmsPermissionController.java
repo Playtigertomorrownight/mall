@@ -58,7 +58,7 @@ public class UmsPermissionController {
     @ApiOperation("以层级结构返回所有权限")
     @RequestMapping(value = "/treeList", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsPermissionNode>> treeList() {
+    public CommonResult treeList() {
         List<UmsPermissionNode> permissionNodeList = permissionService.treeList();
         return CommonResult.success(permissionNodeList);
     }
@@ -66,7 +66,7 @@ public class UmsPermissionController {
     @ApiOperation("获取所有权限列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsPermission>> list() {
+    public CommonResult list() {
         List<UmsPermission> permissionList = permissionService.list();
         return CommonResult.success(permissionList);
     }

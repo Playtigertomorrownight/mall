@@ -1,23 +1,54 @@
 package com.macro.mall.portal.service.impl;
 
-import com.macro.mall.common.api.CommonResult;
-import com.macro.mall.mapper.*;
-import com.macro.mall.model.*;
-import com.macro.mall.portal.component.CancelOrderSender;
-import com.macro.mall.portal.dao.PortalOrderDao;
-import com.macro.mall.portal.dao.PortalOrderItemDao;
-import com.macro.mall.portal.dao.SmsCouponHistoryDao;
-import com.macro.mall.portal.domain.*;
-import com.macro.mall.portal.service.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import com.macro.mall.common.api.CommonResult;
+import com.macro.mall.mapper.OmsOrderItemMapper;
+import com.macro.mall.mapper.OmsOrderMapper;
+import com.macro.mall.mapper.OmsOrderSettingMapper;
+import com.macro.mall.mapper.PmsSkuStockMapper;
+import com.macro.mall.mapper.SmsCouponHistoryMapper;
+import com.macro.mall.mapper.UmsIntegrationConsumeSettingMapper;
+import com.macro.mall.model.OmsOrder;
+import com.macro.mall.model.OmsOrderExample;
+import com.macro.mall.model.OmsOrderItem;
+import com.macro.mall.model.OmsOrderItemExample;
+import com.macro.mall.model.OmsOrderSetting;
+import com.macro.mall.model.PmsSkuStock;
+import com.macro.mall.model.SmsCoupon;
+import com.macro.mall.model.SmsCouponHistory;
+import com.macro.mall.model.SmsCouponHistoryExample;
+import com.macro.mall.model.SmsCouponProductCategoryRelation;
+import com.macro.mall.model.SmsCouponProductRelation;
+import com.macro.mall.model.UmsIntegrationConsumeSetting;
+import com.macro.mall.model.UmsMember;
+import com.macro.mall.model.UmsMemberReceiveAddress;
+import com.macro.mall.portal.component.CancelOrderSender;
+import com.macro.mall.portal.dao.PortalOrderDao;
+import com.macro.mall.portal.dao.PortalOrderItemDao;
+import com.macro.mall.portal.domain.CartPromotionItem;
+import com.macro.mall.portal.domain.ConfirmOrderResult;
+import com.macro.mall.portal.domain.OmsOrderDetail;
+import com.macro.mall.portal.domain.OrderParam;
+import com.macro.mall.portal.domain.SmsCouponHistoryDetail;
+import com.macro.mall.portal.service.OmsCartItemService;
+import com.macro.mall.portal.service.OmsPortalOrderService;
+import com.macro.mall.portal.service.RedisService;
+import com.macro.mall.portal.service.UmsMemberCouponService;
+import com.macro.mall.portal.service.UmsMemberReceiveAddressService;
+import com.macro.mall.portal.service.UmsMemberService;
 
 /**
  * 前台订单管理Service
@@ -37,8 +68,8 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
     private UmsIntegrationConsumeSettingMapper integrationConsumeSettingMapper;
     @Autowired
     private PmsSkuStockMapper skuStockMapper;
-    @Autowired
-    private SmsCouponHistoryDao couponHistoryDao;
+//    @Autowired
+//    private SmsCouponHistoryDao couponHistoryDao;
     @Autowired
     private OmsOrderMapper orderMapper;
     @Autowired

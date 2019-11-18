@@ -58,7 +58,7 @@ public class UmsMemberReceiveAddressController {
     @ApiOperation("显示所有收货地址")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsMemberReceiveAddress>> list() {
+    public CommonResult list() {
         List<UmsMemberReceiveAddress> addressList = memberReceiveAddressService.list();
         return CommonResult.success(addressList);
     }
@@ -66,7 +66,7 @@ public class UmsMemberReceiveAddressController {
     @ApiOperation("显示所有收货地址")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<UmsMemberReceiveAddress> getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable Long id) {
         UmsMemberReceiveAddress address = memberReceiveAddressService.getItem(id);
         return CommonResult.success(address);
     }

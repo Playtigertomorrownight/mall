@@ -1,21 +1,28 @@
 package com.macro.mall.demo.controller;
 
-import com.macro.mall.common.api.CommonPage;
-import com.macro.mall.common.api.CommonResult;
-import com.macro.mall.demo.dto.PmsBrandDto;
-import com.macro.mall.demo.service.DemoService;
-import com.macro.mall.model.PmsBrand;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import com.macro.mall.common.api.CommonPage;
+import com.macro.mall.common.api.CommonResult;
+import com.macro.mall.demo.dto.PmsBrandDto;
+import com.macro.mall.demo.service.DemoService;
+import com.macro.mall.model.PmsBrand;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 品牌管理示例controller
@@ -31,7 +38,7 @@ public class DemoController {
     @ApiOperation(value = "获取全部品牌列表")
     @RequestMapping(value = "/brand/listAll", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<PmsBrand>> getBrandList() {
+    public CommonResult getBrandList() {
         return CommonResult.success(demoService.listAllBrand());
     }
 
@@ -90,7 +97,7 @@ public class DemoController {
     @ApiOperation(value = "分页获取品牌列表")
     @RequestMapping(value = "/brand/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<PmsBrand>> listBrand(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+    public CommonResult listBrand(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                                         @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
         List<PmsBrand> brandList = demoService.listBrand(pageNum, pageSize);
         return CommonResult.success(CommonPage.restPage(brandList));
@@ -99,7 +106,7 @@ public class DemoController {
     @ApiOperation(value = "根据编号查询品牌信息")
     @RequestMapping(value = "/brand/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<PmsBrand> brand(@PathVariable("id") Long id) {
+    public CommonResult brand(@PathVariable("id") Long id) {
         return CommonResult.success(demoService.getBrand(id));
     }
 }

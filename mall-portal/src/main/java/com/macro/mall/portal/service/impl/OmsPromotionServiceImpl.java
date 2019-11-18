@@ -1,5 +1,17 @@
 package com.macro.mall.portal.service.impl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.macro.mall.model.OmsCartItem;
 import com.macro.mall.model.PmsProductFullReduction;
 import com.macro.mall.model.PmsProductLadder;
@@ -8,14 +20,6 @@ import com.macro.mall.portal.dao.PortalProductDao;
 import com.macro.mall.portal.domain.CartPromotionItem;
 import com.macro.mall.portal.domain.PromotionProduct;
 import com.macro.mall.portal.service.OmsPromotionService;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.*;
 
 /**
  * Created by macro on 2018/8/27.

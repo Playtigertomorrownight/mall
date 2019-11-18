@@ -1,20 +1,22 @@
 package com.macro.mall.bo;
 
-import com.macro.mall.model.UmsAdmin;
-import com.macro.mall.model.UmsPermission;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.macro.mall.model.UmsAdmin;
+import com.macro.mall.model.UmsPermission;
 
 /**
  * SpringSecurity需要的用户详情
  * Created by macro on 2018/4/26.
  */
 public class AdminUserDetails implements UserDetails {
+  private static final long serialVersionUID = -3075718544403426608L;
     private UmsAdmin umsAdmin;
     private List<UmsPermission> permissionList;
     public AdminUserDetails(UmsAdmin umsAdmin,List<UmsPermission> permissionList) {

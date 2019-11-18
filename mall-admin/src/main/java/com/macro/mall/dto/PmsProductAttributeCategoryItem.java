@@ -10,6 +10,7 @@ import java.util.List;
  * Created by macro on 2018/5/24.
  */
 public class PmsProductAttributeCategoryItem extends PmsProductAttributeCategory {
+    private static final long serialVersionUID = 9095859256347597388L;
     private List<PmsProductAttribute> productAttributeList;
 
     public List<PmsProductAttribute> getProductAttributeList() {

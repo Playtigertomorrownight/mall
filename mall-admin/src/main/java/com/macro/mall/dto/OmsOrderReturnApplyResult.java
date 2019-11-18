@@ -10,6 +10,7 @@ import lombok.Setter;
  * Created by macro on 2018/10/18.
  */
 public class OmsOrderReturnApplyResult extends OmsOrderReturnApply {
+  private static final long serialVersionUID = -6372795181948338630L;
     @Getter
     @Setter
     private OmsCompanyAddress companyAddress;

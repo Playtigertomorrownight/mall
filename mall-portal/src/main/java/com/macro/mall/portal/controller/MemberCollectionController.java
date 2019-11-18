@@ -1,15 +1,21 @@
 package com.macro.mall.portal.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.macro.mall.common.api.CommonResult;
 import com.macro.mall.portal.domain.MemberProductCollection;
 import com.macro.mall.portal.service.MemberCollectionService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * 会员收藏管理Controller
@@ -49,7 +55,7 @@ public class MemberCollectionController {
     @ApiOperation("显示关注列表")
     @RequestMapping(value = "/listProduct/{memberId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<MemberProductCollection>> listProduct(@PathVariable Long memberId) {
+    public CommonResult listProduct(@PathVariable Long memberId) {
         List<MemberProductCollection> memberProductCollectionList = memberCollectionService.listProduct(memberId);
         return CommonResult.success(memberProductCollectionList);
     }

@@ -23,7 +23,7 @@ public class OmsPortalOrderController {
     @ApiOperation("根据购物车信息生成确认单信息")
     @RequestMapping(value = "/generateConfirmOrder",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult<ConfirmOrderResult> generateConfirmOrder(){
+    public CommonResult generateConfirmOrder(){
         ConfirmOrderResult confirmOrderResult = portalOrderService.generateConfirmOrder();
         return CommonResult.success(confirmOrderResult);
     }

@@ -23,7 +23,7 @@ public class OmsOrderSettingController {
     @ApiOperation("获取指定订单设置")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<OmsOrderSetting> getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable Long id) {
         OmsOrderSetting orderSetting = orderSettingService.getItem(id);
         return CommonResult.success(orderSetting);
     }

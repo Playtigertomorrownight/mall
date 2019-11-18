@@ -25,7 +25,7 @@ public class PmsSkuStockController {
     @ApiOperation("根据商品编号及编号模糊搜索sku库存")
     @RequestMapping(value = "/{pid}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<PmsSkuStock>> getList(@PathVariable Long pid, @RequestParam(value = "keyword",required = false) String keyword) {
+    public CommonResult getList(@PathVariable Long pid, @RequestParam(value = "keyword",required = false) String keyword) {
         List<PmsSkuStock> skuStockList = skuStockService.getList(pid, keyword);
         return CommonResult.success(skuStockList);
     }

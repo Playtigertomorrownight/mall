@@ -1,17 +1,18 @@
 package com.macro.mall.portal.domain;
 
+import java.util.List;
+
 import com.macro.mall.model.SmsCoupon;
 import com.macro.mall.model.SmsCouponHistory;
 import com.macro.mall.model.SmsCouponProductCategoryRelation;
 import com.macro.mall.model.SmsCouponProductRelation;
-
-import java.util.List;
 
 /**
  * 优惠券领取历史详情封装
  * Created by macro on 2018/8/29.
  */
 public class SmsCouponHistoryDetail extends SmsCouponHistory {
+  private static final long serialVersionUID = -3044423009377176841L;
     //相关优惠券信息
     private SmsCoupon coupon;
     //优惠券关联商品

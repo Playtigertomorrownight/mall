@@ -1,20 +1,12 @@
 package com.macro.mall.service.impl;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.StrUtil;
-import com.github.pagehelper.PageHelper;
-import com.macro.mall.bo.AdminUserDetails;
-import com.macro.mall.dao.UmsAdminPermissionRelationDao;
-import com.macro.mall.dao.UmsAdminRoleRelationDao;
-import com.macro.mall.dto.UmsAdminParam;
-import com.macro.mall.dto.UpdateAdminPasswordParam;
-import com.macro.mall.mapper.UmsAdminLoginLogMapper;
-import com.macro.mall.mapper.UmsAdminMapper;
-import com.macro.mall.mapper.UmsAdminPermissionRelationMapper;
-import com.macro.mall.mapper.UmsAdminRoleRelationMapper;
-import com.macro.mall.model.*;
-import com.macro.mall.security.util.JwtTokenUtil;
-import com.macro.mall.service.UmsAdminService;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -32,11 +24,30 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.github.pagehelper.PageHelper;
+import com.macro.mall.bo.AdminUserDetails;
+import com.macro.mall.dao.UmsAdminPermissionRelationDao;
+import com.macro.mall.dao.UmsAdminRoleRelationDao;
+import com.macro.mall.dto.UmsAdminParam;
+import com.macro.mall.dto.UpdateAdminPasswordParam;
+import com.macro.mall.mapper.UmsAdminLoginLogMapper;
+import com.macro.mall.mapper.UmsAdminMapper;
+import com.macro.mall.mapper.UmsAdminPermissionRelationMapper;
+import com.macro.mall.mapper.UmsAdminRoleRelationMapper;
+import com.macro.mall.model.UmsAdmin;
+import com.macro.mall.model.UmsAdminExample;
+import com.macro.mall.model.UmsAdminLoginLog;
+import com.macro.mall.model.UmsAdminPermissionRelation;
+import com.macro.mall.model.UmsAdminPermissionRelationExample;
+import com.macro.mall.model.UmsAdminRoleRelation;
+import com.macro.mall.model.UmsAdminRoleRelationExample;
+import com.macro.mall.model.UmsPermission;
+import com.macro.mall.model.UmsRole;
+import com.macro.mall.security.util.JwtTokenUtil;
+import com.macro.mall.service.UmsAdminService;
+
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * UmsAdminService实现类
@@ -131,7 +142,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     /**
      * 根据用户名修改登录时间
      */
-    private void updateLoginTimeByUsername(String username) {
+    public void updateLoginTimeByUsername(String username) {
         UmsAdmin record = new UmsAdmin();
         record.setLoginTime(new Date());
         UmsAdminExample example = new UmsAdminExample();

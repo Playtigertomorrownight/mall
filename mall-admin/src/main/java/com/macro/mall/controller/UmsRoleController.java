@@ -1,16 +1,23 @@
 package com.macro.mall.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.macro.mall.common.api.CommonResult;
 import com.macro.mall.model.UmsPermission;
 import com.macro.mall.model.UmsRole;
 import com.macro.mall.service.UmsRoleService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * 后台用户角色管理
@@ -59,7 +66,7 @@ public class UmsRoleController {
     @ApiOperation("获取相应角色权限")
     @RequestMapping(value = "/permission/{roleId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsPermission>> getPermissionList(@PathVariable Long roleId) {
+    public CommonResult getPermissionList(@PathVariable Long roleId) {
         List<UmsPermission> permissionList = roleService.getPermissionList(roleId);
         return CommonResult.success(permissionList);
     }

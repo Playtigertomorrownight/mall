@@ -1,21 +1,28 @@
 package com.macro.mall.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.macro.mall.common.api.CommonPage;
 import com.macro.mall.common.api.CommonResult;
 import com.macro.mall.dto.PmsProductCategoryParam;
 import com.macro.mall.dto.PmsProductCategoryWithChildrenItem;
 import com.macro.mall.model.PmsProductCategory;
 import com.macro.mall.service.PmsProductCategoryService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * 商品分类模块Controller
@@ -62,7 +69,7 @@ public class PmsProductCategoryController {
     @RequestMapping(value = "/list/{parentId}", method = RequestMethod.GET)
     @ResponseBody
     @PreAuthorize("hasAuthority('pms:productCategory:read')")
-    public CommonResult<CommonPage<PmsProductCategory>> getList(@PathVariable Long parentId,
+    public CommonResult getList(@PathVariable Long parentId,
                                                                 @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                                 @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         List<PmsProductCategory> productCategoryList = productCategoryService.getList(parentId, pageSize, pageNum);
@@ -73,7 +80,7 @@ public class PmsProductCategoryController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     @PreAuthorize("hasAuthority('pms:productCategory:read')")
-    public CommonResult<PmsProductCategory> getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable Long id) {
         PmsProductCategory productCategory = productCategoryService.getItem(id);
         return CommonResult.success(productCategory);
     }
@@ -121,7 +128,7 @@ public class PmsProductCategoryController {
     @RequestMapping(value = "/list/withChildren", method = RequestMethod.GET)
     @ResponseBody
     @PreAuthorize("hasAuthority('pms:productCategory:read')")
-    public CommonResult<List<PmsProductCategoryWithChildrenItem>> listWithChildren() {
+    public CommonResult listWithChildren() {
         List<PmsProductCategoryWithChildrenItem> list = productCategoryService.listWithChildren();
         return CommonResult.success(list);
     }

@@ -41,7 +41,7 @@ public class UmsAdminController {
     @ApiOperation(value = "用户注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult<UmsAdmin> register(@RequestBody UmsAdminParam umsAdminParam, BindingResult result) {
+    public CommonResult register(@RequestBody UmsAdminParam umsAdminParam, BindingResult result) {
         UmsAdmin umsAdmin = adminService.register(umsAdminParam);
         if (umsAdmin == null) {
             CommonResult.failed();
@@ -101,7 +101,7 @@ public class UmsAdminController {
     @ApiOperation("根据用户名或姓名分页获取用户列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<UmsAdmin>> list(@RequestParam(value = "name", required = false) String name,
+    public CommonResult list(@RequestParam(value = "name", required = false) String name,
                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         List<UmsAdmin> adminList = adminService.list(name, pageSize, pageNum);
@@ -111,7 +111,7 @@ public class UmsAdminController {
     @ApiOperation("获取指定用户信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<UmsAdmin> getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable Long id) {
         UmsAdmin admin = adminService.getItem(id);
         return CommonResult.success(admin);
     }
@@ -171,7 +171,7 @@ public class UmsAdminController {
     @ApiOperation("获取指定用户的角色")
     @RequestMapping(value = "/role/{adminId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsRole>> getRoleList(@PathVariable Long adminId) {
+    public CommonResult getRoleList(@PathVariable Long adminId) {
         List<UmsRole> roleList = adminService.getRoleList(adminId);
         return CommonResult.success(roleList);
     }
@@ -191,7 +191,7 @@ public class UmsAdminController {
     @ApiOperation("获取用户所有权限（包括+-权限）")
     @RequestMapping(value = "/permission/{adminId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsPermission>> getPermissionList(@PathVariable Long adminId) {
+    public CommonResult getPermissionList(@PathVariable Long adminId) {
         List<UmsPermission> permissionList = adminService.getPermissionList(adminId);
         return CommonResult.success(permissionList);
     }

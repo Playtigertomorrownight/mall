@@ -45,7 +45,7 @@ public class PmsProductController {
     @RequestMapping(value = "/updateInfo/{id}", method = RequestMethod.GET)
     @ResponseBody
     @PreAuthorize("hasAuthority('pms:product:read')")
-    public CommonResult<PmsProductResult> getUpdateInfo(@PathVariable Long id) {
+    public CommonResult getUpdateInfo(@PathVariable Long id) {
         PmsProductResult productResult = productService.getUpdateInfo(id);
         return CommonResult.success(productResult);
     }
@@ -67,7 +67,7 @@ public class PmsProductController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     @PreAuthorize("hasAuthority('pms:product:read')")
-    public CommonResult<CommonPage<PmsProduct>> getList(PmsProductQueryParam productQueryParam,
+    public CommonResult getList(PmsProductQueryParam productQueryParam,
                                                         @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                         @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         List<PmsProduct> productList = productService.list(productQueryParam, pageSize, pageNum);
@@ -77,7 +77,7 @@ public class PmsProductController {
     @ApiOperation("根据商品名称或货号模糊查询")
     @RequestMapping(value = "/simpleList", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<PmsProduct>> getList(String keyword) {
+    public CommonResult getList(String keyword) {
         List<PmsProduct> productList = productService.list(keyword);
         return CommonResult.success(productList);
     }

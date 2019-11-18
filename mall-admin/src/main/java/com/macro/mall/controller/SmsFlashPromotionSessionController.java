@@ -70,7 +70,7 @@ public class SmsFlashPromotionSessionController {
     @ApiOperation("获取场次详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<SmsFlashPromotionSession> getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable Long id) {
         SmsFlashPromotionSession promotionSession = flashPromotionSessionService.getItem(id);
         return CommonResult.success(promotionSession);
     }
@@ -78,7 +78,7 @@ public class SmsFlashPromotionSessionController {
     @ApiOperation("获取全部场次")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<SmsFlashPromotionSession>> list() {
+    public CommonResult list() {
         List<SmsFlashPromotionSession> promotionSessionList = flashPromotionSessionService.list();
         return CommonResult.success(promotionSessionList);
     }
@@ -86,7 +86,7 @@ public class SmsFlashPromotionSessionController {
     @ApiOperation("获取全部可选场次及其数量")
     @RequestMapping(value = "/selectList", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<SmsFlashPromotionSessionDetail>> selectList(Long flashPromotionId) {
+    public CommonResult selectList(Long flashPromotionId) {
         List<SmsFlashPromotionSessionDetail> promotionSessionList = flashPromotionSessionService.selectList(flashPromotionId);
         return CommonResult.success(promotionSessionList);
     }

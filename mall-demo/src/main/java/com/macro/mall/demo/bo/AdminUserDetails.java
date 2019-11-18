@@ -1,17 +1,19 @@
 package com.macro.mall.demo.bo;
 
-import com.macro.mall.model.UmsAdmin;
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
-import java.util.Collection;
+import com.macro.mall.model.UmsAdmin;
 
 /**
  * SpringSecurity需要的用户详情
  */
 public class AdminUserDetails implements UserDetails {
+  private static final long serialVersionUID = -8494354937081570898L;
     private UmsAdmin umsAdmin;
 
     public AdminUserDetails(UmsAdmin umsAdmin) {

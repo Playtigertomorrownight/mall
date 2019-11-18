@@ -43,7 +43,7 @@ public class UmsMemberCouponController {
             allowableValues = "0,1,2", paramType = "query", dataType = "integer")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<SmsCouponHistory>> list(@RequestParam(value = "useStatus", required = false) Integer useStatus) {
+    public CommonResult list(@RequestParam(value = "useStatus", required = false) Integer useStatus) {
         List<SmsCouponHistory> couponHistoryList = memberCouponService.list(useStatus);
         return CommonResult.success(couponHistoryList);
     }
@@ -53,7 +53,7 @@ public class UmsMemberCouponController {
             defaultValue = "1", allowableValues = "0,1", paramType = "query", dataType = "integer")
     @RequestMapping(value = "/list/cart/{type}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<SmsCouponHistoryDetail>> listCart(@PathVariable Integer type) {
+    public CommonResult listCart(@PathVariable Integer type) {
         List<CartPromotionItem> cartPromotionItemList = cartItemService.listPromotion(memberService.getCurrentMember().getId());
         List<SmsCouponHistoryDetail> couponHistoryList = memberCouponService.listCart(cartPromotionItemList, type);
         return CommonResult.success(couponHistoryList);

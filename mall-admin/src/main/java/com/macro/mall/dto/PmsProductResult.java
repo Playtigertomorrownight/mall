@@ -5,6 +5,7 @@ package com.macro.mall.dto;
  * Created by macro on 2018/4/26.
  */
 public class PmsProductResult extends PmsProductParam {
+    private static final long serialVersionUID = -699748589213253366L;
     //商品所选分类的父id
     private Long cateParentId;
 

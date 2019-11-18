@@ -1,8 +1,9 @@
 package com.macro.mall.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.macro.mall.validator.FlagValidator;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 商品属性参数

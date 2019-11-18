@@ -59,7 +59,7 @@ public class SmsCouponController {
     @ApiOperation("根据优惠券名称和类型分页获取优惠券列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<SmsCoupon>> list(
+    public CommonResult list(
             @RequestParam(value = "name",required = false) String name,
             @RequestParam(value = "type",required = false) Integer type,
             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
@@ -71,7 +71,7 @@ public class SmsCouponController {
     @ApiOperation("获取单个优惠券的详细信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<SmsCouponParam> getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable Long id) {
         SmsCouponParam couponParam = couponService.getItem(id);
         return CommonResult.success(couponParam);
     }

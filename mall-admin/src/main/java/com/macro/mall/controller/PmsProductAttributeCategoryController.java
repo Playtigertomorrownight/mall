@@ -63,7 +63,7 @@ public class PmsProductAttributeCategoryController {
     @ApiOperation("获取单个商品属性分类信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<PmsProductAttributeCategory> getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable Long id) {
         PmsProductAttributeCategory productAttributeCategory = productAttributeCategoryService.getItem(id);
         return CommonResult.success(productAttributeCategory);
     }
@@ -71,7 +71,7 @@ public class PmsProductAttributeCategoryController {
     @ApiOperation("分页获取所有商品属性分类")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<PmsProductAttributeCategory>> getList(@RequestParam(defaultValue = "5") Integer pageSize, @RequestParam(defaultValue = "1") Integer pageNum) {
+    public CommonResult getList(@RequestParam(defaultValue = "5") Integer pageSize, @RequestParam(defaultValue = "1") Integer pageNum) {
         List<PmsProductAttributeCategory> productAttributeCategoryList = productAttributeCategoryService.getList(pageSize, pageNum);
         return CommonResult.success(CommonPage.restPage(productAttributeCategoryList));
     }
@@ -79,7 +79,7 @@ public class PmsProductAttributeCategoryController {
     @ApiOperation("获取所有商品属性分类及其下属性")
     @RequestMapping(value = "/list/withAttr", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<PmsProductAttributeCategoryItem>> getListWithAttr() {
+    public CommonResult getListWithAttr() {
         List<PmsProductAttributeCategoryItem> productAttributeCategoryResultList = productAttributeCategoryService.getListWithAttr();
         return CommonResult.success(productAttributeCategoryResultList);
     }

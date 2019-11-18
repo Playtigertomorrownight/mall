@@ -1,10 +1,10 @@
 package com.macro.mall.search.service.impl;
 
-import com.macro.mall.search.dao.EsProductDao;
-import com.macro.mall.search.domain.EsProduct;
-import com.macro.mall.search.domain.EsProductRelatedInfo;
-import com.macro.mall.search.repository.EsProductRepository;
-import com.macro.mall.search.service.EsProductService;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.lucene.search.function.FunctionScoreQuery;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -35,10 +35,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import com.macro.mall.search.dao.EsProductDao;
+import com.macro.mall.search.domain.EsProduct;
+import com.macro.mall.search.domain.EsProductRelatedInfo;
+import com.macro.mall.search.repository.EsProductRepository;
+import com.macro.mall.search.service.EsProductService;
 
 
 /**
@@ -54,6 +55,7 @@ public class EsProductServiceImpl implements EsProductService {
     private EsProductRepository productRepository;
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
+    
     @Override
     public int importAll() {
         List<EsProduct> esProductList = productDao.getAllEsProductList(null);
@@ -210,6 +212,7 @@ public class EsProductServiceImpl implements EsProductService {
         //集合搜索分类名称
         builder.addAggregation(AggregationBuilders.terms("productCategoryNames").field("productCategoryName"));
         //聚合搜索商品属性，去除type=1的属性
+        @SuppressWarnings("rawtypes")
         AbstractAggregationBuilder aggregationBuilder = AggregationBuilders.nested("allAttrValues","attrValueList")
                 .subAggregation(AggregationBuilders.filter("productAttrs",QueryBuilders.termQuery("attrValueList.type",1))
                 .subAggregation(AggregationBuilders.terms("attrIds")

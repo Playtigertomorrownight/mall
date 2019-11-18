@@ -1,12 +1,12 @@
 package com.macro.mall.security.config;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 用于配置不需要保护的资源路径

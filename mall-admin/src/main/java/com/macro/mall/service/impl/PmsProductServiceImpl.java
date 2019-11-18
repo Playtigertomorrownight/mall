@@ -1,14 +1,11 @@
 package com.macro.mall.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.macro.mall.dao.*;
-import com.macro.mall.dto.PmsProductParam;
-import com.macro.mall.dto.PmsProductQueryParam;
-import com.macro.mall.dto.PmsProductResult;
-import com.macro.mall.mapper.*;
-import com.macro.mall.model.*;
-import com.macro.mall.service.PmsProductService;
-import io.swagger.annotations.Example;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +13,43 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.github.pagehelper.PageHelper;
+import com.macro.mall.dao.CmsPrefrenceAreaProductRelationDao;
+import com.macro.mall.dao.CmsSubjectProductRelationDao;
+import com.macro.mall.dao.PmsMemberPriceDao;
+import com.macro.mall.dao.PmsProductAttributeValueDao;
+import com.macro.mall.dao.PmsProductDao;
+import com.macro.mall.dao.PmsProductFullReductionDao;
+import com.macro.mall.dao.PmsProductLadderDao;
+import com.macro.mall.dao.PmsProductVertifyRecordDao;
+import com.macro.mall.dao.PmsSkuStockDao;
+import com.macro.mall.dto.PmsProductParam;
+import com.macro.mall.dto.PmsProductQueryParam;
+import com.macro.mall.dto.PmsProductResult;
+import com.macro.mall.mapper.CmsPrefrenceAreaProductRelationMapper;
+import com.macro.mall.mapper.CmsSubjectProductRelationMapper;
+import com.macro.mall.mapper.PmsMemberPriceMapper;
+import com.macro.mall.mapper.PmsProductAttributeValueMapper;
+import com.macro.mall.mapper.PmsProductFullReductionMapper;
+import com.macro.mall.mapper.PmsProductLadderMapper;
+import com.macro.mall.mapper.PmsProductMapper;
+import com.macro.mall.mapper.PmsSkuStockMapper;
+import com.macro.mall.model.CmsPrefrenceAreaProductRelationExample;
+import com.macro.mall.model.CmsSubjectProductRelationExample;
+import com.macro.mall.model.PmsMemberPrice;
+import com.macro.mall.model.PmsMemberPriceExample;
+import com.macro.mall.model.PmsProduct;
+import com.macro.mall.model.PmsProductAttributeValue;
+import com.macro.mall.model.PmsProductAttributeValueExample;
+import com.macro.mall.model.PmsProductExample;
+import com.macro.mall.model.PmsProductFullReduction;
+import com.macro.mall.model.PmsProductFullReductionExample;
+import com.macro.mall.model.PmsProductLadder;
+import com.macro.mall.model.PmsProductLadderExample;
+import com.macro.mall.model.PmsProductVertifyRecord;
+import com.macro.mall.model.PmsSkuStock;
+import com.macro.mall.model.PmsSkuStockExample;
+import com.macro.mall.service.PmsProductService;
 
 /**
  * 商品管理Service实现类
@@ -331,7 +360,7 @@ public class PmsProductServiceImpl implements PmsProductService {
      * @param dataList  要插入的数据
      * @param productId 建立关系的id
      */
-    private void relateAndInsertList(Object dao, List dataList, Long productId) {
+    private void relateAndInsertList(Object dao, List<?> dataList, Long productId) {
         try {
             if (CollectionUtils.isEmpty(dataList)) return;
             for (Object item : dataList) {

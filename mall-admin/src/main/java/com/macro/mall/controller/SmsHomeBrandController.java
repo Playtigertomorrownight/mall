@@ -70,7 +70,7 @@ public class SmsHomeBrandController {
     @ApiOperation("分页查询推荐品牌")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<SmsHomeBrand>> list(@RequestParam(value = "brandName", required = false) String brandName,
+    public CommonResult list(@RequestParam(value = "brandName", required = false) String brandName,
                                                        @RequestParam(value = "recommendStatus", required = false) Integer recommendStatus,
                                                        @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                        @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {

@@ -27,7 +27,7 @@ public class OmsOrderController {
     @ApiOperation("查询订单")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<OmsOrder>> list(OmsOrderQueryParam queryParam,
+    public CommonResult list(OmsOrderQueryParam queryParam,
                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         List<OmsOrder> orderList = orderService.list(queryParam, pageSize, pageNum);
@@ -70,7 +70,7 @@ public class OmsOrderController {
     @ApiOperation("获取订单详情:订单信息、商品信息、操作记录")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<OmsOrderDetail> detail(@PathVariable Long id) {
+    public CommonResult detail(@PathVariable Long id) {
         OmsOrderDetail orderDetailResult = orderService.detail(id);
         return CommonResult.success(orderDetailResult);
     }

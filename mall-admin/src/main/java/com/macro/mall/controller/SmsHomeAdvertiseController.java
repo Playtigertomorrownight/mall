@@ -56,7 +56,7 @@ public class SmsHomeAdvertiseController {
     @ApiOperation("获取广告详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<SmsHomeAdvertise> getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable Long id) {
         SmsHomeAdvertise advertise = advertiseService.getItem(id);
         return CommonResult.success(advertise);
     }
@@ -74,7 +74,7 @@ public class SmsHomeAdvertiseController {
     @ApiOperation("分页查询广告")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<SmsHomeAdvertise>> list(@RequestParam(value = "name", required = false) String name,
+    public CommonResult list(@RequestParam(value = "name", required = false) String name,
                                                            @RequestParam(value = "type", required = false) Integer type,
                                                            @RequestParam(value = "endTime", required = false) String endTime,
                                                            @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,

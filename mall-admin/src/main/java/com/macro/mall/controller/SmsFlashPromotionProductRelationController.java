@@ -60,7 +60,7 @@ public class SmsFlashPromotionProductRelationController {
     @ApiOperation("获取管理商品促销信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<SmsFlashPromotionProductRelation> getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable Long id) {
         SmsFlashPromotionProductRelation relation = relationService.getItem(id);
         return CommonResult.success(relation);
     }
@@ -68,7 +68,7 @@ public class SmsFlashPromotionProductRelationController {
     @ApiOperation("分页查询不同场次关联及商品信息")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<SmsFlashPromotionProduct>> list(@RequestParam(value = "flashPromotionId") Long flashPromotionId,
+    public CommonResult list(@RequestParam(value = "flashPromotionId") Long flashPromotionId,
                                                                    @RequestParam(value = "flashPromotionSessionId") Long flashPromotionSessionId,
                                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                                    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {

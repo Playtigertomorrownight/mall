@@ -1,10 +1,11 @@
 package com.macro.mall.portal.domain;
 
+import java.math.BigDecimal;
+
 import com.macro.mall.model.PmsProduct;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigDecimal;
 
 /**
  * 秒杀信息和商品对象封装
@@ -13,6 +14,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class FlashPromotionProduct extends PmsProduct{
+  
+  private static final long serialVersionUID = -7630129850414229727L;
     private BigDecimal flashPromotionPrice;
     private Integer flashPromotionCount;
     private Integer flashPromotionLimit;
