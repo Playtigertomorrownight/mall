@@ -1,5 +1,13 @@
 package com.macro.mall.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
 import com.github.pagehelper.PageHelper;
 import com.macro.mall.dao.PmsProductCategoryAttributeRelationDao;
 import com.macro.mall.dao.PmsProductCategoryDao;
@@ -8,15 +16,13 @@ import com.macro.mall.dto.PmsProductCategoryWithChildrenItem;
 import com.macro.mall.mapper.PmsProductCategoryAttributeRelationMapper;
 import com.macro.mall.mapper.PmsProductCategoryMapper;
 import com.macro.mall.mapper.PmsProductMapper;
-import com.macro.mall.model.*;
+import com.macro.mall.model.PmsProduct;
+import com.macro.mall.model.PmsProductCategory;
+import com.macro.mall.model.PmsProductCategoryAttributeRelation;
+import com.macro.mall.model.PmsProductCategoryAttributeRelationExample;
+import com.macro.mall.model.PmsProductCategoryExample;
+import com.macro.mall.model.PmsProductExample;
 import com.macro.mall.service.PmsProductCategoryService;
-import org.apache.commons.collections.CollectionUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * PmsProductCategoryService实现类
