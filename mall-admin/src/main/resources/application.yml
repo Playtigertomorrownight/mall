@@ -49,7 +49,9 @@ qiniu:
     bucketPrivate: ${OSS_BUCKET_PRIVATE} # oss的存储空间
     bucketPublic: ${OSS_BUCKET_PUBLIC}
     policyEexpire: 300 # 签名有效期(S)
-    callback: http://39.98.190.128:8080/aliyun/oss/callback # 文件上传成功后的回调地址
+    callback:  # 文件上传成功后的回调地址
+    ossFileHost: oss.smallrain.top #文件访问地址的域名
+    
     
 logging:
   level:

@@ -20,6 +20,7 @@ public class QiniuOssConfig {
 	private String secretKey;
 	private String bucketPrivate;
 	private String bucketPublic;
-	private int policyEexpire;
+	private int policyEexpire = 100;
 	private String callback;
+	private String ossFileHost;
 }
