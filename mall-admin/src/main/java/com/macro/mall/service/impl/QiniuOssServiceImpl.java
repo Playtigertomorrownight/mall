@@ -1,5 +1,8 @@
 package com.macro.mall.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,16 +30,19 @@ public class QiniuOssServiceImpl {
 	 * @param key
 	 * @return
 	 */
-	public String getGeneralUploadToken(String isPublic, String key) {
+	public Map<String,String> getGeneralUploadToken(String isPublic, String key) {
+		Map<String,String> result = new HashMap<>();
 		Auth auth = Auth.create(qiniuOssConfig.getAccessKey(), qiniuOssConfig.getSecretKey());
 		isPublic = StringUtils.isBlank(isPublic)?"public":isPublic;
 		isPublic = isPublic.contains("public")?qiniuOssConfig.getBucketPublic():qiniuOssConfig.getBucketPrivate();
 		if(StringUtils.isBlank(key)) {
-			return auth.uploadToken(isPublic); 
+			result.put("token", auth.uploadToken(isPublic)); 
+			result.put("baseUrl", qiniuOssConfig.getPublicHost()); 
 		}else {
-			return auth.uploadToken(isPublic,key); 
+			result.put("token", auth.uploadToken(isPublic,key)); 
+			result.put("baseUrl", qiniuOssConfig.getPrivateHost());
 		}
-		
+		return result;
 	}
 
 	/**

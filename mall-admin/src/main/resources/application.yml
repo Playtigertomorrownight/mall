@@ -50,7 +50,8 @@ qiniu:
     bucketPublic: ${OSS_BUCKET_PUBLIC}
     policyEexpire: 300 # 签名有效期(S)
     callback:  # 文件上传成功后的回调地址
-    ossFileHost: oss.smallrain.top #文件访问地址的域名
+    publicHost: http://oss.smallrain.top #文件访问地址的域名
+    privateHost: 
     
     
 logging:

@@ -22,5 +22,6 @@ public class QiniuOssConfig {
 	private String bucketPublic;
 	private int policyEexpire = 100;
 	private String callback;
-	private String ossFileHost;
+	private String publicHost;
+	private String privateHost;
 }
